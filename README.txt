@@ -35,6 +35,18 @@ The tool includes no analytics, login, database, automatic AI calls or draft sto
 GitHub and external font/library providers still receive ordinary web
 requests; this is not a promise of anonymous hosting or zero server logs.
 
+INTERNAL REVIEW WORKFLOW
+Review any Recommend against findings first. Open each finding for its
+matched wording and suggested fix, revise the draft, then check it again.
+Confirm checklist items against evidence already held. Keep the pre-check
+note with the draft and evidence. Before publication, have a person review
+the full copy, images and context. Use CAP Copy Advice for borderline
+claims and legal advice where needed. A clean scan is not approval.
+
+The rule engine and generated note are unchanged from the supplied source.
+The October 2026 source label is not a new independent verification of
+every rule. Consult the linked current CAP Code and ASA guidance.
+
 ASK AI FOR A DEEPER READ
 1. Scan your copy, then go to step 04, below the pre-check note.
 2. Choose Ask Claude, Ask ChatGPT, Ask Copilot, Ask Grok or Ask Gemini.

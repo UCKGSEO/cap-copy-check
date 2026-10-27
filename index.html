@@ -228,6 +228,10 @@ input[type="checkbox"], input[type="radio"] { accent-color:var(--accent); }
 .copy-help summary, .ai-help summary { cursor:pointer; min-height:44px; display:flex; align-items:center; font-weight:500; color:var(--fg); }
 .copy-help .help-body, .ai-help .help-body { display:grid; gap:10px; padding:4px 0 10px; }
 .finding-help { margin-top:-6px; }
+a.btn { display:inline-flex; align-items:center; text-decoration:none; }
+.signoff-list { margin:0; padding-left:20px; display:grid; gap:8px; }
+.signoff-list li { padding-left:2px; }
+.source-link { overflow-wrap:anywhere; }
 @media(max-width:600px) {
  body { padding:10px 8px 28px; font-size:14px; line-height:1.5; }
  .wrap { gap:12px; }
@@ -298,8 +302,8 @@ input[type="checkbox"], input[type="radio"] { accent-color:var(--accent); }
     <svg class="brand-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M14 28h12M15 33h10M18 37h4M13 23a12 12 0 1 1 14 0c-2 2-2 3-2 5H15c0-2 0-3-2-5Z" stroke="currentColor" stroke-width="2"/><path d="m17 15 3 3 5-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     <div class="eyebrow">UCKG.org · Writer Tools</div>
     <h1>CAP Copy Check</h1>
-    <p class="lede">Paste or upload a testimonial, leaflet, document, PDF or social post. The tool scans it against the UK CAP Code, shows which rules the wording touches, and drafts a pre-check note in the style of CAP Copy Advice. It is a first filter before you ask CAP, not a substitute for them.</p>
-    <p class="lede mobile-lede">Check your draft against the CAP Code. A first filter—not approval.</p>
+    <p class="lede">Check your draft before publication. Paste or upload a testimonial, leaflet, document, PDF or social post to flag wording that may need changes, review the evidence checklist and prepare an internal pre-check note. Not CAP approval.</p>
+    <p class="lede mobile-lede">Check your draft before publication. A first filter—not CAP approval.</p>
   </header>
 
   <section class="step" aria-labelledby="h-copy">
@@ -346,13 +350,13 @@ input[type="checkbox"], input[type="radio"] { accent-color:var(--accent); }
   <section class="step" id="resultsBlock" aria-labelledby="h-res" hidden>
     <div class="step-head"><span class="step-no">02</span><h2 id="h-res">What the scan found</h2></div>
     <div class="verdict" id="verdict"></div>
-    <p class="hint finding-help">Open a finding for the matched wording, rules and suggested fixes.</p>
+    <p class="hint finding-help">Review any “Recommend against” findings first. Open a card for the wording and suggested fix, then revise and check again.</p>
     <div class="findings" id="findings"></div>
   </section>
 
   <section class="step" id="evidenceBlock" aria-labelledby="h-ev" hidden>
     <div class="step-head"><span class="step-no">03</span><h2 id="h-ev">Evidence and sign-off checklist</h2></div>
-    <p class="hint">The first two lines are filled in by the scan. Confirm the rest by eye against your files. A flagged phrase unchecks its own line, so a draft cannot score high while something is still flagged.</p>
+    <p class="hint">The scan fills in the first two lines. Check the rest against the evidence you hold—not what you intend to collect. This meter tracks confirmed checks, not whether the copy is safe to publish.</p>
     <div class="meter">
       <div class="meter-bar" id="meterBar" aria-hidden="true"></div>
       <div class="meter-text"><span class="meter-pct" id="meterPct">5%</span><span id="meterLabel" class="hint">Nothing checked yet</span></div>
@@ -377,7 +381,7 @@ input[type="checkbox"], input[type="radio"] { accent-color:var(--accent); }
 
   <section class="step" id="noteBlock" aria-labelledby="h-note" hidden>
     <div class="step-head"><span class="step-no">04</span><h2 id="h-note">Pre-check note</h2></div>
-    <p class="hint">Written in the same structure as CAP Copy Advice replies so it is easy to compare. It is labelled as an internal automated note and must not be shared or described as advice from CAP or the ASA.</p>
+    <p class="hint">Keep this note with your draft and evidence. It is an internal automated pre-check—not advice or approval from CAP or the ASA.</p>
     <textarea class="note" id="note" readonly aria-label="Pre-check note"></textarea>
     <div class="row">
       <button class="btn primary" id="copyBtn" type="button">Copy note</button>
@@ -386,7 +390,7 @@ input[type="checkbox"], input[type="radio"] { accent-color:var(--accent); }
     </div>
     <div class="ai-read" aria-labelledby="h-ai">
       <h3 id="h-ai">Ask AI for a deeper read</h3>
-      <p class="hint">Copy a prompt and open an AI. You paste and submit it yourself—nothing is sent automatically.</p>
+      <p class="hint">For a second read, copy a prompt into your chosen AI. Remove personal or sensitive details before sharing. You paste and submit it yourself; nothing is sent automatically.</p>
       <details class="ai-help"><summary>How it works &amp; privacy</summary><div class="help-body">
         <p class="hint">Choose an AI to copy a review prompt and open its website. The prompt includes your current draft, material type and CAP findings, and asks for risks and safer replacement wording. Paste it into the AI chat and submit it yourself. Nothing is sent automatically, and no API keys are needed.</p>
         <p class="hint">Before pasting, remove personal details and anything you do not have permission to share, especially health information. Once submitted, your draft is handled under that provider’s terms and privacy settings. An AI review is not CAP, ASA or legal approval.</p>
@@ -407,15 +411,26 @@ input[type="checkbox"], input[type="radio"] { accent-color:var(--accent); }
     </div>
   </section>
 
+  <section class="step" aria-labelledby="h-signoff">
+    <div class="step-head"><span class="step-no">05</span><h2 id="h-signoff">Before publication</h2></div>
+    <ul class="signoff-list">
+      <li>Have a person review the full copy, images and context. A clean scan is not approval.</li>
+      <li>Keep the final draft, this pre-check note and the supporting evidence together.</li>
+      <li>Ask CAP Copy Advice for a written view on borderline claims. Take legal advice where needed.</li>
+    </ul>
+    <div class="row"><a class="btn" href="https://www.asa.org.uk/advice-and-resources/copy-advice.html" target="_blank" rel="noopener noreferrer">Go to CAP Copy Advice</a></div>
+  </section>
+
   <section class="step" aria-labelledby="h-ref">
     <div class="step-head"><h2 id="h-ref">Rules this tool checks</h2></div>
     <details class="ref">
       <summary>CAP Code rules and where they come from</summary>
       <div class="ref-table"><table id="refTable"></table></div>
-      <p class="foot" style="margin-top:12px">Rule numbers and wording were checked against the CAP Code and the ASA's religious and spiritual healing guidance in October 2026. The Code is updated from time to time, so confirm against the current text. The broadcast code (BCAP 15.12 and 15.13) says faith healing and miracle working must not be claimed to treat health problems; the ASA applies the same thinking to non-broadcast copy through rules 12.2 and 1.3.</p>
+      <p class="foot" style="margin-top:12px">These rule references come from the supplied October 2026 version of this tool. This copy update has not independently re-verified every rule. Confirm the wording against the current CAP Code and ASA guidance before relying on it.</p>
       <p class="foot" style="margin-top:8px">Sources: <a href="https://www.asa.org.uk/codes-and-rulings/advertising-codes/non-broadcast-code.html" target="_blank" rel="noopener">CAP Code (non-broadcast)</a> · <a href="https://www.asa.org.uk/advice-online/religious-and-spiritual-healing.html" target="_blank" rel="noopener">AdviceOnline: religious and spiritual healing</a> · <a href="https://asa.org.uk/rulings/healing-on-the-streets-bath-a11-158433.html" target="_blank" rel="noopener">ASA ruling: Healing on the Streets, Bath</a></p>
     </details>
-    <p class="foot">This tool is an automated word and phrase scan. It cannot judge context, tone or images, and a clean result is not approval. CAP Copy Advice is free for UK advertisers and does not bind the ASA, but it is the right route for anything on the borderline.</p>
+    <p class="foot">An internal writer tool for UCKG.org, not a service from CAP or the ASA. It scans words and phrases; it cannot assess the full context, images or evidence. CAP Copy Advice offers free and paid-for options, and its advice does not bind the ASA.</p>
+    <p class="foot source-link">Source and updates: <a href="https://github.com/UCKGSEO/cap-copy-check" target="_blank" rel="noopener noreferrer">UCKGSEO/cap-copy-check on GitHub</a>.</p>
   </section>
 </div>
 
