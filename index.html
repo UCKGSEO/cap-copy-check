@@ -223,13 +223,72 @@ input[type="checkbox"], input[type="radio"] { accent-color:var(--accent); }
 .ai-buttons .btn span { display:block; font-size:10px; font-weight:400; margin-top:4px; color:var(--muted); }
 .ai-prompt { min-height:280px; font-family:var(--font-mono); font-size:12px; }
 .ai-handoff { display:grid; gap:10px; }
+.mobile-lede { display:none; }
+.copy-help, .ai-help { font-size:13px; color:var(--muted); }
+.copy-help summary, .ai-help summary { cursor:pointer; min-height:44px; display:flex; align-items:center; font-weight:500; color:var(--fg); }
+.copy-help .help-body, .ai-help .help-body { display:grid; gap:10px; padding:4px 0 10px; }
+.finding-help { margin-top:-6px; }
 @media(max-width:600px) {
- body { padding:16px 12px 40px; } .wrap { gap:18px; }
- section.step { padding:18px 15px; }
- .types { display:grid; grid-template-columns:1fr 1fr; }
- .types span { width:100%; text-align:center; }
- .row.url-row { flex-wrap:nowrap; } .url-row input { flex:1; }
- .privacy-tag { font-size:9px; } .pill { font-size:10px; } .f-title { flex-basis:100%; }
+ body { padding:10px 8px 28px; font-size:14px; line-height:1.5; }
+ .wrap { gap:12px; }
+ .utility { gap:8px; }
+ .privacy-tag { font-size:8px; letter-spacing:-.02em; }
+ .theme-toggle { font-size:11px; padding:8px 10px; }
+ header { padding:6px 8px 8px; }
+ .brand-icon { display:none; }
+ .eyebrow { font-size:9px; }
+ h1 { font-size:30px; margin:8px 0; }
+ header .lede:not(.mobile-lede) { display:none; }
+ .mobile-lede { display:block; max-width:36ch; font-size:12px; line-height:1.5; }
+ section.step { padding:14px 12px; gap:12px; border-radius:9px; }
+ h2 { font-size:19px; line-height:1.25; }
+ .step-head { gap:8px; flex-wrap:nowrap; }
+ .step-no { font-size:10px; }
+ legend { font-size:10px; padding-bottom:6px; }
+ .types { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+ .types span { width:100%; text-align:center; min-height:44px; display:flex; align-items:center; justify-content:center; font-size:12px; padding:8px; }
+ .btn { min-height:44px; padding:10px 12px; font-size:12px; }
+ .row { gap:6px; }
+ .row.url-row { flex-wrap:nowrap; }
+ .url-row input { flex:1; padding:9px 10px; }
+ input[type="url"], textarea { font-size:16px; }
+ textarea { min-height:150px; padding:10px; line-height:1.45; }
+ #runBtn { flex:1; }
+ .hint { font-size:12px; line-height:1.45; }
+ .status:empty { display:none; }
+ .sample-banner { padding:8px 10px; font-size:11px; line-height:1.4; }
+ .paste-label { font-size:9px; gap:8px; }
+ .copy-help summary, .ai-help summary { font-size:12px; }
+ .verdict { padding:12px; gap:8px; }
+ .verdict .label { font-size:20px; }
+ .verdict > p:not(.hint) { font-size:12px; }
+ .counts { gap:5px; }
+ .pill { font-size:9px; padding:3px 6px; letter-spacing:0; }
+ .findings { gap:6px; }
+ details.finding > summary { position:relative; padding:10px 12px; gap:6px; min-height:44px; }
+ details.finding > summary::after { position:absolute; right:10px; top:10px; }
+ .f-title { flex-basis:100%; font-size:13px; line-height:1.4; padding-right:14px; }
+ .rule { font-size:10px; padding:1px 5px; }
+ .rules { gap:4px; }
+ .f-body { padding:0 12px 12px; gap:10px; font-size:13px; }
+ .snips li { font-size:12px; padding:7px 8px; }
+ .why-rules { font-size:11px; }
+ .checklist { gap:5px; }
+ .checklist li { padding:8px; gap:8px; font-size:12px; line-height:1.45; }
+ .checklist .rl { gap:4px; margin-top:3px; }
+ .checklist input { width:18px; height:18px; }
+ .checklist label { display:block; min-height:30px; }
+ .checklist li.auto .auto-tag { font-size:9px; }
+ .meter { gap:5px; }
+ .meter-pct { font-size:24px; }
+ .meter-bar i { height:7px; }
+ .note { min-height:180px; font-size:16px; }
+ .ai-read { gap:10px; padding-top:14px; }
+ .ai-buttons { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+ .ai-buttons .btn { padding:9px 10px; }
+ .ai-buttons .btn span { font-size:9px; margin-top:2px; }
+ .ai-prompt { min-height:180px; font-size:16px; }
+ .foot { font-size:11px; }
 }
 </style>
 
@@ -240,6 +299,7 @@ input[type="checkbox"], input[type="radio"] { accent-color:var(--accent); }
     <div class="eyebrow">UCKG.org · Writer Tools</div>
     <h1>CAP Copy Check</h1>
     <p class="lede">Paste or upload a testimonial, leaflet, document, PDF or social post. The tool scans it against the UK CAP Code, shows which rules the wording touches, and drafts a pre-check note in the style of CAP Copy Advice. It is a first filter before you ask CAP, not a substitute for them.</p>
+    <p class="lede mobile-lede">Check your draft against the CAP Code. A first filter—not approval.</p>
   </header>
 
   <section class="step" aria-labelledby="h-copy">
@@ -267,7 +327,6 @@ input[type="checkbox"], input[type="radio"] { accent-color:var(--accent); }
       <input type="url" id="url" placeholder="Or fetch a live page: https://…" aria-label="URL to fetch">
       <button class="btn" id="fetchBtn" type="button">Fetch URL</button>
     </div>
-    <p class="hint">Scanned leaflets or image-only PDFs have no text to read. Copy the wording out and paste it below.</p>
 
     <div class="sample-banner" id="sampleBanner">Invented example loaded so you can see the output. It is not real UCKG copy. Replace it with your own or press Clear.</div>
     <label for="copy" class="hint paste-label">Or paste it below · headline first</label>
@@ -278,12 +337,16 @@ input[type="checkbox"], input[type="radio"] { accent-color:var(--accent); }
       <button class="btn" id="clearBtn" type="button">Clear</button>
       <span class="status" id="runStatus" role="status"></span>
     </div>
-    <p class="hint">Runs entirely in this page. Files and pasted text are not sent anywhere. Fetch URL makes a direct request to the page you provide. File readers and fonts load from external providers; your copy is not included in those requests.</p>
+    <details class="copy-help"><summary>File support &amp; privacy</summary><div class="help-body">
+      <p class="hint">Scanned leaflets or image-only PDFs have no text to read. Copy the wording out and paste it below.</p>
+      <p class="hint">Runs entirely in this page. Files and pasted text are not sent anywhere. Fetch URL makes a direct request to the page you provide. File readers and fonts load from external providers; your copy is not included in those requests.</p>
+    </div></details>
   </section>
 
   <section class="step" id="resultsBlock" aria-labelledby="h-res" hidden>
     <div class="step-head"><span class="step-no">02</span><h2 id="h-res">What the scan found</h2></div>
     <div class="verdict" id="verdict"></div>
+    <p class="hint finding-help">Open a finding for the matched wording, rules and suggested fixes.</p>
     <div class="findings" id="findings"></div>
   </section>
 
@@ -323,8 +386,11 @@ input[type="checkbox"], input[type="radio"] { accent-color:var(--accent); }
     </div>
     <div class="ai-read" aria-labelledby="h-ai">
       <h3 id="h-ai">Ask AI for a deeper read</h3>
-      <p class="hint">Choose an AI to copy a review prompt and open its website. The prompt includes your current draft, material type and CAP findings, and asks for risks and safer replacement wording. Paste it into the AI chat and submit it yourself. Nothing is sent automatically, and no API keys are needed.</p>
-      <p class="hint">Before pasting, remove personal details and anything you do not have permission to share, especially health information. Once submitted, your draft is handled under that provider’s terms and privacy settings. An AI review is not CAP, ASA or legal approval.</p>
+      <p class="hint">Copy a prompt and open an AI. You paste and submit it yourself—nothing is sent automatically.</p>
+      <details class="ai-help"><summary>How it works &amp; privacy</summary><div class="help-body">
+        <p class="hint">Choose an AI to copy a review prompt and open its website. The prompt includes your current draft, material type and CAP findings, and asks for risks and safer replacement wording. Paste it into the AI chat and submit it yourself. Nothing is sent automatically, and no API keys are needed.</p>
+        <p class="hint">Before pasting, remove personal details and anything you do not have permission to share, especially health information. Once submitted, your draft is handled under that provider’s terms and privacy settings. An AI review is not CAP, ASA or legal approval.</p>
+      </div></details>
       <div class="ai-buttons" role="group" aria-label="Copy review prompt and open an AI provider">
         <button class="btn" type="button" data-ai="claude">Ask Claude<span>Copy prompt &amp; open website</span></button>
         <button class="btn" type="button" data-ai="chatgpt">Ask ChatGPT<span>Copy prompt &amp; open website</span></button>
@@ -758,7 +824,7 @@ var SAMPLE_TEXT = 'Testimony: Grace, 34\n\nFor two years I lived for the weekend
     if (!res.findings.length) { box.appendChild(el('p', 'hint', 'Nothing to list.')); return; }
     var names = { high: 'Recommend against', caution: 'Caution', check: 'Check' };
     res.findings.forEach(function (f) {
-      var d = el('details', 'finding'); if (f.sev === 'high') d.open = true;
+      var d = el('details', 'finding'); if (f.sev === 'high' && !window.matchMedia('(max-width: 600px)').matches) d.open = true;
       var s = el('summary');
       s.appendChild(el('span', 'pill ' + (f.positive ? 'ok' : f.sev), f.positive ? 'Helpful' : names[f.sev]));
       s.appendChild(el('span', 'f-title', f.title + (f.count > 1 && f.snips.length ? ' (' + f.count + ')' : '')));

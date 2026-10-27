@@ -59,6 +59,9 @@ old version persists, use a hard refresh (Ctrl+Shift+R or Cmd+Shift+R).
 CHECK THE DEPLOYMENT
 - The title should read CAP Copy Check.
 - The invented example should say Recommend changes before use.
+- On phones, finding cards start collapsed. Tap a card to read its full
+  matched wording, rules and suggested fixes. Desktop high-risk cards
+  still start open. File and AI privacy help can be expanded on any screen.
 - Try switching between light and dark mode.
 - Try a .txt, .md, .docx or text-based .pdf upload.
 - Check my copy should refresh findings and the pre-check note.
